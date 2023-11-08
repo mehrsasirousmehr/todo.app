@@ -15,7 +15,7 @@
 }
 
 body {
-    width: 1000px;
+    max-width: 1000px;
     margin: auto;
 }
 
@@ -88,14 +88,14 @@ thead {
 }
 
 thead th {
-    padding: 10px 20px;
+    padding: 10px;
 }
 
-thead tr th:first-child {
+thead th:first-child {
     border-top-left-radius: 10px;
 }
 
-thead tr th:last-child {
+thead th:last-child {
     border-top-right-radius: 10px;
 }
 
