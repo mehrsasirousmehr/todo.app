@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Todo App</h2>
+        <div class="input-section">
+            <input type="text" id="task-input" placeholder="Add todo ...">
+            <input type="date" id="date-task">
+            <button id="add-button">Add</button>
+            <button id="edit-button">Edit</button>
+        </div>
+
+        <div class="todos-operatore">
+            <div>
+                <button class="filter-todos">All</button>
+                <button class="filter-todos">Pending</button>
+                <button class="filter-todos">completed</button>
+            </div>
+            <button id="delete-all-button">Delete All</button>
+        </div>
+    </div>
+
+    <!-- alert taxt -->
+    <div class="alert-message"></div>
+
+    <!-- todo list -->
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>text</td>
+                    <td>date</td>
+                    <td>pending</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Do</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
