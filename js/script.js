@@ -3,7 +3,18 @@ const dateInput = document.getElementById("date-task");
 const addButton = document.getElementById("add-button");
 const alertMessage = document.getElementById("alert-message");
 
-let todos = [];
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+// save to local storage
+const saveToLocalStorage = () => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+};
+console.log(saveToLocalStorage());
+
+// creat id for todos
+const generateId = () => {
+    return Math.round(Math.random() * Math.random() * Math.pow(10, 15)).toString();
+};
 
 // show alert message
 const showAlert = (message, type) => {
@@ -24,12 +35,14 @@ const addHandler = () => {
     const task = taskInput.value;
     const date = dateInput.value;
     const todo = {
+        id: generateId(),
         task,
         date,
         completed: false,
     };
     if (task) {
         todos.push(todo);
+        saveToLocalStorage();
         taskInput.value = "";
         dateInput.value = "";
         showAlert("todo added successfully", "success");
