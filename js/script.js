@@ -2,6 +2,7 @@ const taskInput = document.getElementById("task-input");
 const dateInput = document.getElementById("date-task");
 const addButton = document.getElementById("add-button");
 const alertMessage = document.getElementById("alert-message");
+const todosBody = document.querySelector("tbody");
 
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
@@ -9,7 +10,6 @@ let todos = JSON.parse(localStorage.getItem("todos")) || [];
 const saveToLocalStorage = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
 };
-console.log(saveToLocalStorage());
 
 // creat id for todos
 const generateId = () => {
@@ -30,6 +30,31 @@ const showAlert = (message, type) => {
     }, 2000);
 };
 
+// show todos
+const displayTodos = (data) => {
+    todosBody.innerHTML = "";
+    if (!todos.length) {
+        todosBody.innerHTML = "<tr><td colspan='4'>No task found!</td></tr>";
+        return;
+    }
+
+    todos.forEach((todo) => {
+        todosBody.innerHTML += `
+        <tr>
+            <td>${todo.task}</td>
+            <td>${todo.date ? todo.date : "No date!"}</td>
+            <td>${todo.completed ? "completed ✅" : "pending"}</td>
+            <td>
+                <button onclick="editHandler('${todo.id}')">Edit</button>
+                <button onclick="toggleHandler('${todo.id}')">
+                    ${todo.completed ? "undo" : "Do"}
+                </button>
+                <button onclick="deleteHandler('${todo.id}')">Delete</button>
+            </td>
+        </tr>`;
+    });
+};
+
 // get todo values
 const addHandler = () => {
     const task = taskInput.value;
@@ -43,6 +68,7 @@ const addHandler = () => {
     if (task) {
         todos.push(todo);
         saveToLocalStorage();
+        displayTodos();
         taskInput.value = "";
         dateInput.value = "";
         showAlert("todo added successfully", "success");
@@ -51,4 +77,5 @@ const addHandler = () => {
     }
 };
 
+window.addEventListener("load", displayTodos);
 addButton.addEventListener("click", addHandler);
